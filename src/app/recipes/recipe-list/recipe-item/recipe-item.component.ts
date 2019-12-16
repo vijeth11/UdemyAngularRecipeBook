@@ -13,11 +13,12 @@ export class RecipeItemComponent implements OnInit {
   //@Output() recipeSelected:EventEmitter<void> = new EventEmitter<void>(); used to communicate from recipe item to list and component
   constructor(private recipeService:RecipeService) { }
   @Input() recipe:Recipe;
+  @Input() Id:number;
   ngOnInit() {
   }
-  selectedRecipe()
+  /*selectedRecipe()
   {
     //this.recipeSelected.emit();
     this.recipeService.recipeSelected.emit(this.recipe);
-  }
+  }*/
 }

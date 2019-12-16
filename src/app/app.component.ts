@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  loadFeature:string = 'recipe'
-  onNavigate(feature:string){
-   this.loadFeature=feature;
-  }
+  // constructor(private route:Router){}
+  // loadFeature:string = 'recipe'
+  // onNavigate(feature:string){
+  //   this.route.navigate([feature]);
+  // }
 }
