@@ -7,11 +7,15 @@ import { Subject } from 'rxjs';
 })
 export class ShoppingListService {
   newIngredientChanged:Subject<Ingredients[]> = new Subject<Ingredients[]>();
+  startedEditing:Subject<number>=new Subject<number>();
   private ingredients:Ingredients[] =[
     new Ingredients('Apples',5),
     new Ingredients('Tomatoes',10),
   ];
   constructor() { }
+  getIngredient(index:number):Ingredients{
+    return this.ingredients[index];
+  }
   getIngredients(){
     return this.ingredients.slice();
   }
@@ -29,5 +33,15 @@ export class ShoppingListService {
     if(!hasValues){
     this.ingredients.push(...ingredients);
     }
+  }
+
+  updateIngredient(index: number,newIngredient:Ingredients){
+    this.ingredients[index] = newIngredient;
+    this.newIngredientChanged.next(this.ingredients.slice());
+  }
+
+  deleteIngredient(index:number){
+    this.ingredients.splice(index,1);
+    this.newIngredientChanged.next(this.ingredients.slice());
   }
 }
