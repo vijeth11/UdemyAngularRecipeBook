@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- Add a Form with the following Inputs (and Validators)
+           1) Mail address (should not be empty and should be an email address)
+           2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")
+              Set "Advanced" as Default
+           3) A Password field (should not be empty)
+           4) A Submit Button
+
+           Display a warning message if the Form is invalid AND was touched. Display a warning message below each input if it's invalid.
+
+           Upon submitting the form, you should simply print the Value of the Form to the Console.
+           Optionally, display it in your template.
+      -->
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+          type="email"
+          id="email" 
+          class="form-control"
+          ngModel
+          name="email"
+          required
+          email
+          #email = "ngModel"
+          >
+          <p *ngIf="!email.valid && email.touched"> Email is Invalid</p>
+        </div>
+        <div class="form-group">
+          <label for="subscription">Subscriptions</label>
+          <select 
+          id="subscribe" 
+          class="form-control"
+          [ngModel]="subscribe"
+          name="secret">
+            <option value="Basic">Basic</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Pro">Pro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+          type="password"
+          id="password"
+          class="form-control"
+          ngModel
+          name="password"
+          required
+          #password="ngModel">
+          <p *ngIf="!password.valid && password.touched">Pssword is required</p>
+        </div>
+        <button 
+        class="btn btn-primary" 
+        type="submit"
+        [disabled]="!f.valid">Submit</button>
+      </form>
+    </div>
+  </div>
+  <hr>
+  <div class="row" *ngIf ="submitted">
+    <div class="col-xs-12">
+      <h3> Your Data</h3>
+      <p>Mail: {{userData.email}}</p>
+      <p>Subscription: {{userData.subscription}}</p>
+      <p>Password: {{userData.password}}</p>
+    </div>
+  </div>
+</div>

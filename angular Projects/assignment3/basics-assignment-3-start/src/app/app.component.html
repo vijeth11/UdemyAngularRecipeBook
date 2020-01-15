@@ -1,0 +1,12 @@
+<div class="container">
+  <div class = "row">
+    <div class = "col-xs-12">
+      <button (click)="displaySecret()">Display Details</button>
+      <p *ngIf="isDisplaySecret"> Secret Password is tuna</p>
+      <div *ngFor="let click of clicks;let i = index">
+      <div *ngIf ="i < 5"><p>{{click}}</p></div>
+      <div *ngIf = "i >= 5"><p [ngStyle] = "{backgroundColor: 'blue'}" [ngClass]="{setcolor:true}">{{click}}</p></div>
+    </div>
+    </div>
+  </div>
+</div>
