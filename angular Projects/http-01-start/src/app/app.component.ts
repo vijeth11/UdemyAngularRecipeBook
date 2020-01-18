@@ -1,3 +1,4 @@
+import { PostService } from './post.service';
 import { Post } from './posts.module';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -8,47 +9,35 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  loadedPosts = [];
+  loadedPosts:Post[] = [];
+  isloading:boolean=false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private postService:PostService) {}
 
   ngOnInit() {
-    this.fetchPosts();
+    this.isloading = true;
+    this.postService.fetchPosts().subscribe(responseData => {
+      this.isloading = false;
+      this.loadedPosts = responseData;
+    });
   }
 
   onCreatePost(postData: Post) {
     // Send Http request
-    this.http
-      .post<{[id:string]:Post}>(
-        'https://angular-comlete-guide-udemy.firebaseio.com/post.json',
-        postData
-      )
-      .subscribe(responseData => {
-        console.log(responseData);
-      });
+    this.postService.createAndStorePost(postData.title,postData.content);
   }
 
   onFetchPosts() {
     // Send Http request
-    this.fetchPosts();
+    this.isloading = true;
+    this.postService.fetchPosts().subscribe(responseData => {
+      this.isloading = false;
+      this.loadedPosts = responseData;
+    });
   }
 
   onClearPosts() {
     // Send Http request
   }
 
-  private fetchPosts(){
-    this.http
-      .get<{[id:string]:Post}>('https://angular-comlete-guide-udemy.firebaseio.com/post.json')
-      .pipe(map((responsedata:{[postId:string]:Post}) => {
-        var postsArray=[]
-        for(var key in responsedata){
-          postsArray.push({...responsedata[key],id:key});
-        }
-        return postsArray
-      }))
-      .subscribe(responsedata=>{
-        console.log(responsedata);
-      })
-  }
 }
