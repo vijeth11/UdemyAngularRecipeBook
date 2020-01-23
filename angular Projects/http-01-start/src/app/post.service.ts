@@ -35,7 +35,8 @@ export class PostService {
         {
           headers:new HttpHeaders({'Custom-Header':'hello'}),
           //params: new HttpParams().set('print','pretty')
-          params:searchParams
+          params:searchParams,
+          responseType:'json'
         })
         .pipe(
           map((responsedata:{[postId:string]:Post}) => {
@@ -53,7 +54,8 @@ export class PostService {
     deleteAllPost(){
       return this.http.delete('https://angular-comlete-guide-udemy.firebaseio.com/post.json',
       {
-        observe:'events'
+        observe:'events',
+        responseType:'text'
       }
       ).pipe(tap(event =>{
         console.log(event);
