@@ -13,12 +13,12 @@
                 <section style="margin-top: 6vh;"><label><input class="input-grad password" type="password" placeholder="Password" data-validate="Enter Password"/><span class="placeholder-text">Password</span></label></section>
             </div>
             <div class="card-body container" style="justify-content: flex-start;align-items: center;">
-                <button type="submit">Login</button>
+                <button type="submit">{{isLoginMode ? 'Login':'Sign Up'}}</button>
                 <div style="text-align: center!important;">
                     <span class="signupLink">
                         Don’t have an account?
                         </span>
-                        <a class="signUp" href="#">
+                        <a class="signUp" type="button" (click)="onSwitchMode()">
                         Sign Up
                         </a>
                 </div>

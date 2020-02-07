@@ -5,4 +5,9 @@ import { Component, ViewEncapsulation } from "@angular/core";
     templateUrl:'./auth.component.html',
     styleUrls:['./auth.component.css']
 })
-export class AuthComponent {}
+export class AuthComponent {
+    isLoginMode = true;
+    onSwitchMode() {
+        this.isLoginMode = !this.isLoginMode;
+    }
+}
