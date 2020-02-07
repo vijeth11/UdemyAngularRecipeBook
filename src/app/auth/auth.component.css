@@ -1,0 +1,126 @@
+div{
+    border: 0px solid black;
+}
+html, body {
+    height: 98.5%;
+}
+.row {
+    height: inherit;
+    margin-bottom: 2vh;
+    margin-left: 29%;
+    margin-right: 29%;
+}
+.card{
+    border-radius: 15px !important;
+    border:1px solid rgba(0,0,0,.125);
+    background-color: #fff;
+    background-clip: border-box;
+    font-weight: 50 !important;
+    font-size: 17px !important;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.material-icons.md-48 {
+     font-size: 66px; 
+}
+label {
+    width : 100%;
+}
+input.input-grad{
+    outline: 0;
+    width : 100%;
+    border-width: 0 0 2px;
+    border-color: black;
+  }
+input.input-grad::-webkit-input-placeholder{
+    color:transparent;
+}
+input.input-grad:focus {
+    border-image: linear-gradient(to left,#21d4fd,#b721ff) 0 2 100%;
+  }
+  
+  span.placeholder-text {
+    display:block;
+    position: absolute;
+    transform: translateY(-27px)
+}
+  input:focus ~ span {
+    /* z-index: -1; */
+    transform: translateY(-50px);
+    transition: all .5s ease ;
+  }
+  
+  input:not(:focus) ~ span{
+    transform: translateY(-27px);
+    transition: all .5s ease ;
+  }
+
+  input:not(:placeholder-shown) ~ span {
+    transform: translateY(-50px);
+    transition: all .5s ease ;
+  }
+
+button{
+    border-radius: 50px !important;
+    margin-top: 5vh;
+    margin-bottom: 15vh !important;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    background-image: linear-gradient(to right,#21d4fd,#b721ff,#21d4fd);
+    background-repeat: repeat-x;
+    border:none !important;
+    transition: all .4s ease-in-out;
+    background-size: 200% 100%;
+}
+
+button:hover {
+    background-position: right top;
+    transition: all .4s ease-in-out;
+  }
+
+.signupLink{
+    font-family: Poppins-Regular;
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+    
+}
+.signUp{
+    font-family: Poppins-Regular;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    text-decoration: none;
+}
+.signUp:hover{
+    color: blue;
+    text-decoration: none !important;
+}
+
+@media
+(min-device-width: 992px){
+      section{
+          width: 60%;
+      }
+      button{
+          width:60%
+      }
+  } 
+
+@media
+(min-width: 600px) and (max-width: 991px){
+      section{
+          width: 80%;
+      }
+      button{
+          width:80%
+      }
+  } 
+
+
+
+  
+  
