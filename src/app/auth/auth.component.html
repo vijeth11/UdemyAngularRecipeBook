@@ -1,5 +1,6 @@
 <div class="row">               
     <div class="card" >
+            <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
             <div class="container" style="justify-content:flex-start;align-content: center;">
                <div class="container" style="padding-top: 5vh;align-items: center;">
                 <h3 class="card-title" style="font-weight: bolder; font-size: 7vh;">Welcome</h3>
@@ -9,8 +10,28 @@
                </div>                             
             </div>
             <div class="card-body container" style="justify-content: flex-end; align-items: center;">
-                <section style="margin-top:4vh;"><label><input class="input-grad email" type="text" placeholder="Email"/><span class="placeholder-text">Email</span></label></section>
-                <section style="margin-top: 6vh;"><label><input class="input-grad password" type="password" placeholder="Password" data-validate="Enter Password"/><span class="placeholder-text">Password</span></label></section>
+                <section style="margin-top:4vh;"><label><input class="input-grad email" type="text" placeholder="Email" ngModel name="Email" email required (focus)="emailValid=true"/>
+                    <span class="placeholder-text">
+                        Email
+                    </span> 
+                    <div class="EmailVaidator" *ngIf="!emailValid && authForm.controls.Email && authForm.controls.Email.dirty" >
+                        Valid email is: a@b.c 
+                    </div>
+                </label></section>
+                <section style="margin-top: 6vh;"><label>
+                    <input  class="input-grad password" 
+                    type="password" 
+                    placeholder="Password" 
+                    ngModel 
+                    name="password" 
+                    minlength="6"
+                    (focus)="passwordValid=true"
+                    required/>
+                    <span class="placeholder-text">Password</span>
+                    <div class="PasswordVaidator" *ngIf="!passwordValid && authForm.controls.password && authForm.controls.password.dirty">
+                        Enter password 
+                    </div>
+                </label></section>
             </div>
             <div class="card-body container" style="justify-content: flex-start;align-items: center;">
                 <button type="submit">{{isLoginMode ? 'Login':'Sign Up'}}</button>
@@ -23,5 +44,6 @@
                         </a>
                 </div>
             </div>
+            </form>
     </div>
 </div>

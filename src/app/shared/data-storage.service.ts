@@ -10,13 +10,13 @@ import { Injectable } from '@angular/core';
 })
 export class DataStorageService {
 
-  constructor(private http:HttpClient,private recipeService:RecipeService) {
+  constructor(private https:HttpClient,private recipeService:RecipeService) {
 
    }
 
    storedRecipes(){
     const recipes= this.recipeService.getRecipes();
-    this.http.put("https://angularcourserecipebook.firebaseio.com/recipes.json",recipes)
+    this.https.put("https://angularcourserecipebook.firebaseio.com/recipes.json",recipes)
     .subscribe(Response => {
       console.log(Response);
     });
@@ -24,7 +24,7 @@ export class DataStorageService {
 
    fetchRecipes()
    {
-     return this.http.get<Recipe[]>("https://angularcourserecipebook.firebaseio.com/recipes.json")
+     return this.https.get<Recipe[]>("https://angularcourserecipebook.firebaseio.com/recipes.json")
      .pipe(map(recipes=> {
        return recipes.map(recipe => {
         return {...recipe,ingredients:recipe.ingredients ? recipe.ingredients:[]}
