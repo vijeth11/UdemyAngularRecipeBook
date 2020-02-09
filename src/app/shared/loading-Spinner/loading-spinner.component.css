@@ -1,0 +1,73 @@
+.hm-spinner{
+    height: 185px;
+    width: 185px;
+    border: 10px solid transparent;
+    border-top-color: #e15b64;
+    border-bottom-color: #e15b64;
+    border-radius: 50%;
+    position: relative;
+    -webkit-animation: spin 3s linear infinite;
+            animation: spin 3s linear infinite;
+  }
+  
+  .hm-spinner::before{
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    border: 10px solid transparent;
+    border-top-color: #f8b26a;
+    border-bottom-color: #f8b26a;
+    border-radius: 50%;
+    -webkit-animation: spinBack 1.7s linear infinite;
+    animation: spinBack 1.7s linear infinite;
+  
+  }
+
+  
+  @-webkit-keyframes spin {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes spin {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  @-webkit-keyframes spinBack {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(-720deg);
+      transform: rotate(-720deg);
+    }
+  }
+  
+  @keyframes spinBack {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(-720deg);
+      transform: rotate(-720deg);
+    }
+  }
+  
