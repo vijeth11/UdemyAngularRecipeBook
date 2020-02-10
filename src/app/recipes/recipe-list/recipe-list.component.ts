@@ -29,6 +29,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   addNewRecipe(){
     this.router.navigate(['new'],{relativeTo:this.route});
+    console.log(this.router.url);
   }
 
   ngOnDestroy(): void {
