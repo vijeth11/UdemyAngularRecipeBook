@@ -36,14 +36,14 @@ export class AuthComponent {
             }
             this.authObs.subscribe(
                 resData => {
-                    console.log(resData);
+                    //console.log(resData);
                     this.isLoading = false;
                     if(!this.isLoginMode){
                         this.onSwitchMode();
                     }
                 },
                 errorMessage => {
-                    console.log(errorMessage);                        
+                    //console.log(errorMessage);                        
                     this.error = errorMessage;
                     this.isLoading = false;
                 }
