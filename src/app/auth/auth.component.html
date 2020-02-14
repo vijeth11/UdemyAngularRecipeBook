@@ -1,7 +1,8 @@
 <div class="row">         
-    <div class="alert alert-danger" *ngIf="error">
+    <!--<div class="alert alert-danger" *ngIf="error">
         <p>{{error}}</p>
-    </div>
+    </div>-->
+    <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
     <div *ngIf="isLoading" style="text-align: center;margin-top: 25vh;margin-left: 20vh;">
         <app-loading-spinner></app-loading-spinner>
     </div>      
@@ -46,7 +47,7 @@
                         Don’t have an account?
                         </span>
                         <a class="signUp" type="button" (click)="onSwitchMode()">
-                        Sign Up
+                        {{!isLoginMode ? 'Login':'Sign Up'}}
                         </a>
                 </div>
             </div>

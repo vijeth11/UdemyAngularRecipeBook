@@ -56,4 +56,8 @@ export class AuthComponent {
     setEmailId(){
         console.log("Email focused");
     }
+
+    onHandleError(){
+        this.error = null;
+    }
 }
