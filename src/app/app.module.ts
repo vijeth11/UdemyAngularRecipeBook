@@ -1,3 +1,4 @@
+import { PlaceHolderDirective } from './shared/placeholder/placeholder.directive';
 import { AlertCompoenet } from './shared/alert/alert.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { RecipeService } from './recipes/recipe.service';
@@ -39,7 +40,8 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
     RecipeEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
-    AlertCompoenet
+    AlertCompoenet,
+    PlaceHolderDirective
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
     HttpClientModule,
   ],
   providers: [ShoppingListService,RecipeService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[AlertCompoenet]
 })
 export class AppModule { }
