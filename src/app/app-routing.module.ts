@@ -7,9 +7,10 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from "@angular/core";
+import { AuthGuard } from './auth/auth-guard';
 
 const appRoutes:Routes =[
-    {path:'recipes', component: RecipesComponent,children:[
+    {path:'recipes', component: RecipesComponent, canActivate:[AuthGuard],children:[
         {path:'new',component:RecipeEditComponent},
         {path:':id',component:RecipeDetailComponent,resolve:[RecipesResolverService]},
         {path:':id/edit',component:RecipeEditComponent,resolve:[RecipesResolverService]},
