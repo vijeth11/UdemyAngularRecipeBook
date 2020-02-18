@@ -10,15 +10,10 @@ import { NgModule } from "@angular/core";
 import { AuthGuard } from './auth/auth-guard';
 
 const appRoutes:Routes =[
-    {path:'recipes', component: RecipesComponent, canActivate:[AuthGuard],children:[
-        {path:'new',component:RecipeEditComponent},
-        {path:':id',component:RecipeDetailComponent,resolve:[RecipesResolverService]},
-        {path:':id/edit',component:RecipeEditComponent,resolve:[RecipesResolverService]},
-        {path:'',component:RecipestartComponent,pathMatch:"full"}
-    ]},
     {path:'shopping-list',component:ShoppingListComponent},
     {path:'auth',component:AuthComponent},
-    {path:'',redirectTo:'/recipes',pathMatch:"full"}
+    {path:'',redirectTo:'/recipes',pathMatch:"full"},
+    
 ];
 @NgModule({
     imports:[RouterModule.forRoot(appRoutes)],
