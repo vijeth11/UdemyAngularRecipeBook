@@ -10,7 +10,6 @@ import { NgModule } from "@angular/core";
 import { AuthGuard } from './auth/auth-guard';
 
 const appRoutes:Routes =[
-    {path:'shopping-list',component:ShoppingListComponent},
     {path:'auth',component:AuthComponent},
     {path:'',redirectTo:'/recipes',pathMatch:"full"},
     
