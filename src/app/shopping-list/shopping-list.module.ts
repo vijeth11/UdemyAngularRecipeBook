@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
     ShoppingEditComponent,
     ],
     imports:[
-        RouterModule.forChild([{path:'shopping-list',component:ShoppingListComponent}]),
+        RouterModule.forChild([{path:'',component:ShoppingListComponent}]),
         FormsModule,
         SharedModule
     ],

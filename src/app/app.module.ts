@@ -1,7 +1,4 @@
 import { SharedModule } from './shared/shared.module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
-import { RecipeModule } from './recipes/recipe.module';
-import { AlertCompoenet } from './shared/alert/alert.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { RecipeService } from './recipes/recipe.service';
 import { AuthComponent } from './auth/auth.component';
@@ -26,11 +23,11 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
   imports: [
     BrowserModule,
     FormsModule,
-    RecipeModule,
+    //RecipeModule as this is lazy loaded,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ShoppingListModule,
+    //ShoppingListModule,
     SharedModule
   ],
   providers: [ShoppingListService,RecipeService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}],
