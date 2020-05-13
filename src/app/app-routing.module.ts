@@ -1,5 +1,5 @@
 import { AuthComponent } from './auth/auth.component';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { NgModule } from "@angular/core";
 
 const appRoutes:Routes =[
@@ -11,7 +11,10 @@ const appRoutes:Routes =[
     
 ];
 @NgModule({
-    imports:[RouterModule.forRoot(appRoutes)],
+    imports:[
+        RouterModule.forRoot(appRoutes,{preloadingStrategy : PreloadAllModules})// does lazy loading but it will try to load all modules at a time in the background
+                                                                                // while user can browse the page rather than delaying to load when user enters that module
+    ],
     exports:[RouterModule]
 })
 export class AppRoutingModule{
