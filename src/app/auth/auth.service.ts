@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { throwError, Subject, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
-
+import {environment} from '../../environments/environment';
 
 export interface AuthResponseData{
     kind:string;
@@ -25,7 +25,7 @@ tokenExpirationTimer:any;
 constructor(private http:HttpClient,private router:Router) {}
 
 signup(email:string,password:string){
-    return this.http.post<AuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAU7v4JeOoxNZCTgAY1hKUNHMQ_3AdJ9Yc",{
+    return this.http.post<AuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+environment.firebaseAPIKey,{
         email:email,
         password:password,
         returnSecureToken:true
@@ -36,7 +36,7 @@ signup(email:string,password:string){
 }
 
 login(email:string,password:string){
-    return this.http.post<AuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAU7v4JeOoxNZCTgAY1hKUNHMQ_3AdJ9Yc",{
+    return this.http.post<AuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="+environment.firebaseAPIKey,{
         email:email,
         password:password,
         returnSecureToken:true

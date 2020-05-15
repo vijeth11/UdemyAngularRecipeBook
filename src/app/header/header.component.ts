@@ -10,7 +10,7 @@ import { AuthService } from '../auth/auth.service';
 export class HeaderComponent implements OnInit,OnDestroy{
     
     private userSub:Subscription;
-    private collapsed:boolean = true;
+    public collapsed:boolean = true;
     isAuthenticated:boolean = false;
     // @Output() featureSelected:EventEmitter<String>=new EventEmitter<String>();
     // onSelect(feature:string){
