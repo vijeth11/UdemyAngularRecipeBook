@@ -7,10 +7,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {StoreModule} from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
+import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 
 
 
@@ -27,6 +29,7 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    StoreModule.forRoot({shoppingList:shoppingListReducer}),
     //ShoppingListModule,
     SharedModule
   ],
