@@ -1,4 +1,4 @@
-import * as fromShoppingList from './../shopping-list/store/shopping-list.reducer';
+import * as fromApp from '../store/app.reducer';
 import { Ingredients } from './../shared/ingredients.model';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
@@ -34,7 +34,7 @@ export class RecipeService {
   private recipes:Recipe[]=[];
   constructor(
     private shopingListService:ShoppingListService,
-    private store:Store<fromShoppingList.AppState>) { }
+    private store:Store<fromApp.AppState>) { }
   getRecipes(){
     return this.recipes.slice();
   }

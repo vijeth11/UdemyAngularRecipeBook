@@ -1,4 +1,4 @@
-import * as fromShoppingList from './../store/shopping-list.reducer';
+import * as fromApp from '../../store/app.reducer';
 import { Ingredients } from './../../shared/ingredients.model';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -23,13 +23,13 @@ export class ShoppingEditComponent implements OnInit,OnDestroy {
  editedItem: Ingredients;
   constructor(
     private shoppingListService:ShoppingListService,
-    private store:Store<fromShoppingList.AppState>) { }
+    private store:Store<fromApp.AppState>) { }
 
   ngOnInit() {
     this.subscription = this.store.select('shoppingList').subscribe(stateData => {
       if(stateData.editedIngredientIndex > -1){
         this.editMode=true;
-        this.editedItemIndex = stateData.editedIngredientIndex;
+        //this.editedItemIndex = stateData.editedIngredientIndex; this becomes redundant as we are using the same to update and delete items
         this.editedItem= stateData.editedIngredient;
         this.slForm.setValue({
           'name':this.editedItem.name,
@@ -61,7 +61,7 @@ export class ShoppingEditComponent implements OnInit,OnDestroy {
     const newIngrident = new Ingredients(value.name, value.amount);
     if(this.editMode){
       //this.shoppingListService.updateIngredient(this.editedItemIndex,newIngrident);
-      this.store.dispatch(new shoppingListAction.UpdateIngredient({index:this.editedItemIndex,ingredient:newIngrident}));
+      this.store.dispatch(new shoppingListAction.UpdateIngredient(newIngrident)); // removed editingridentIndex as we can take them from state
     }else{
     //this.shoppingListService.addIngredient(newIngrident);
     this.store.dispatch(new shoppingListAction.AddIngredient(newIngrident));
@@ -81,7 +81,7 @@ export class ShoppingEditComponent implements OnInit,OnDestroy {
   }
   onDeleteItem(){
     //this.shoppingListService.deleteIngredient(this.editedItemIndex);
-    this.store.dispatch(new shoppingListAction.DeleteIngredient(this.editedItemIndex));
+    this.store.dispatch(new shoppingListAction.DeleteIngredient()); // removed editingridentIndex as we can take them from state
     this.onClearItem();
   }
 }
