@@ -18,7 +18,7 @@ export class AuthComponent implements OnDestroy{
     error:string=null;
     authObs:Observable<AuthResponseData>;
     closeObserv:Subscription;
-    @ViewChild(PlaceHolderDirective,{static:false}) alertHost:PlaceHolderDirective;
+    @ViewChild(PlaceHolderDirective) alertHost:PlaceHolderDirective;
 
     constructor(private authService:AuthService, private componentFactoryResolver:ComponentFactoryResolver){}
     onSwitchMode() {

@@ -4,9 +4,9 @@ import { NgModule } from "@angular/core";
 
 const appRoutes:Routes =[
     {path:'auth',component:AuthComponent},
-    {path:'recipes',loadChildren:'./recipes/recipe.module#RecipeModule'},
+    {path:'recipes',loadChildren:() => import('./recipes/recipe.module').then(m => m.RecipeModule)},
     // modern version {path:'recipes',loadChildren:()=>import('./recipes/recipe.module').then(m => m.RecipeModule)},
-    {path:'shopping-list',loadChildren:'./shopping-list/shopping-list.module#ShoppingListModule'},
+    {path:'shopping-list',loadChildren:() => import('./shopping-list/shopping-list.module').then(m => m.ShoppingListModule)},
     {path:'',redirectTo:'/recipes',pathMatch:"full"},
     
 ];

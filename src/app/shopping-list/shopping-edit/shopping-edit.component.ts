@@ -16,7 +16,7 @@ export class ShoppingEditComponent implements OnInit,OnDestroy {
  // @ViewChild('nameInput',{static:true}) nameInputRef:ElementRef;
  // @ViewChild('amountInput',{static:true}) amountInputRef:ElementRef;
  // @Output() newIngredientAdded:EventEmitter<Ingredients> = new EventEmitter<Ingredients>(); replaced with service
- @ViewChild('f',{static:false}) slForm:NgForm;
+ @ViewChild('f') slForm:NgForm;
  subscription:Subscription;
  editMode:boolean = false;
  editedItemIndex:number;
