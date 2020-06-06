@@ -13,8 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
-            "outputPath": "dist/my-first-app/browser",
+            "outputPath": "dist/my-first-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,12 +30,6 @@
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -100,53 +93,6 @@
               "**/node_modules/**"
             ]
           }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/my-first-app/server",
-            "main": "server.ts",
-            "tsConfig": "src/tsconfig.server.json"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "sourceMap": false,
-              "optimization": true
-            }
-          }
-        },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "options": {
-            "browserTarget": "my-first-app:build",
-            "serverTarget": "my-first-app:server"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "my-first-app:build:production",
-              "serverTarget": "my-first-app:server:production"
-            }
-          }
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "browserTarget": "my-first-app:build:production",
-            "serverTarget": "my-first-app:server:production",
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {}
-          }
         }
       }
     },
@@ -173,8 +119,5 @@
       }
     }
   },
-  "defaultProject": "my-first-app",
-  "cli": {
-    "analytics": "aa7c973a-f085-4987-a6cd-7864fd1bc2a5"
-  }
+  "defaultProject": "my-first-app"
 }

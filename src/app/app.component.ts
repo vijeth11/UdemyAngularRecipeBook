@@ -1,7 +1,9 @@
+import { LoggingService } from './shared/loggingService/logging-service.service';
 import { AuthComponent } from './auth/auth.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth/auth.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +16,12 @@ export class AppComponent implements OnInit{
   // onNavigate(feature:string){
   //   this.route.navigate([feature]);
   // }
-  constructor(private authService:AuthService){}
+  constructor(private authService:AuthService,private loggerService:LoggingService,@Inject(PLATFORM_ID) private platformid){  
+  }
   ngOnInit(){
+    if(isPlatformBrowser(this.platformid)){
     this.authService.autoLogin();
+    }
+    this.loggerService.printLog("Hello from AppComponent on ngOnInit");
   }
 }

@@ -23,7 +23,7 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
     AuthComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
     //RecipeModule as this is lazy loaded,
     AppRoutingModule,
