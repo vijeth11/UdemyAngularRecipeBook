@@ -22,6 +22,7 @@ OnInit
   @ViewChild('headerElement',{static:true}) headerElement:ElementRef;
   @ContentChild('paragraphContent',{static:true}) paragraph:ElementRef;
   constructor() { 
+    console.log(this.name);
     console.log("constructor called!");
   }
 
@@ -30,6 +31,7 @@ OnInit
     console.log(changes);
   }
   ngOnInit() {
+    console.log(this.name);
     console.log("ngOnInit called");
     console.log("header element value :"+this.headerElement.nativeElement.textContent);
     console.log("Paragraph COntent"+this.paragraph.nativeElement.textContent);
