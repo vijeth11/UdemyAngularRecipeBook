@@ -21,7 +21,15 @@ export class AppComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    this.shoppingItems = this.store.pipe(select(selectShoppingItems));
+    /* shoppping items without selector from entity */
+    this.shoppingItems = this.store.select(store => {
+      let data = []
+      for(var id of store.shoppings.ids){
+        data.push(store.shoppings.entities[id]);
+      }
+      return data;
+    });
+    //this.shoppingItems = this.store.pipe(select(selectShoppingItems));
     this.loading$ = this.store.pipe(select(selectLoading));
     this.error$ = this.store.pipe(select(selectError));
 
