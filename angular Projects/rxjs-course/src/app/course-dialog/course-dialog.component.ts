@@ -38,15 +38,34 @@ export class CourseDialogComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-
-
+        this.form.valueChanges
+        .pipe(
+            filter((value) => this.form.valid), // returns value only if it is valid 
+            // executes the observable over the emitted value(ex: changes).Once the observable (ex: saveCourse) is 
+            //completed then it takes next emitted value and executes the observable on it again due to this we will 
+            //have ordered api calls. 
+            concatMap(changes => this.saveCourse(changes)) 
+        )
+        .subscribe()
 
     }
 
-
+    saveCourse(changes){
+        return fromPromise(fetch(`/api/courses/${this.course.id}`,{
+            method:'PUT',
+            body:JSON.stringify(changes),
+            headers:{
+                'content-type':'application/json'
+            }
+        }));
+    }
 
     ngAfterViewInit() {
-
+        fromEvent(this.saveButton.nativeElement,'click')
+        .pipe(
+            exhaustMap(() => this.form.value)
+        )
+        .subscribe();
 
     }
 
