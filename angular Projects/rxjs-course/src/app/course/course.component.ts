@@ -11,13 +11,18 @@ import {
     concatMap,
     switchMap,
     withLatestFrom,
-    concatAll, shareReplay, throttleTime
+    concatAll, 
+    shareReplay, 
+    throttleTime,
+    throttle,
+    first,
+    take
 } from 'rxjs/operators';
 import {merge, fromEvent, Observable, concat} from 'rxjs';
 import {Lesson} from '../model/lesson';
 import { createHttpObservable } from '../common/util';
-import { throttle } from 'rxjs/operators';
 import { debug, RxJsLoggingLevel, setRxJsLoggingLevel } from '../common/debug';
+import { Store } from '../common/store.service';
 
 
 @Component({
@@ -31,22 +36,37 @@ export class CourseComponent implements OnInit, AfterViewInit {
     course$: Observable<Course>;
     lessons$: Observable<Lesson[]>;
 
-    courseId = 0;
+    courseId:Number = 0;
     @ViewChild('searchInput', { static: true }) input: ElementRef;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private store:Store) {
         this.courseId = this.route.snapshot.params['id'];
     }
 
-    ngOnInit() {
-
-        
-
-        this.course$ = createHttpObservable(`/api/courses/${this.courseId}`).pipe(
+    ngOnInit() {        
+        // Below code works useing store service instead
+        /*this.course$ = createHttpObservable(`/api/courses/${this.courseId}`).pipe(
             debug(RxJsLoggingLevel.INFO,"course value "),
-        );
-        
+        );*/
+        this.course$ = this.store.selectCourseById(this.courseId).pipe(
+            debug(RxJsLoggingLevel.INFO,"course value "),
+            // Subjects observable does not complete due to which some opearators like concatMap, ForkJoin etc
+            // will never get completed and blocks the other observable in order to overcome this we use first
+            first(),
+            // this will take till 2 values emitted by observable then it completes the source observable
+            take(2)
+        )
         setRxJsLoggingLevel(RxJsLoggingLevel.DEBUG);
+
+        this.loadLessons().
+        pipe(
+            // this combines the value form source with the latest value of course observable after the loadlesson has 
+            // emitted the value. It gives the values in tuple form
+            withLatestFrom(this.course$)
+        ).subscribe(([lessons,course])=> {
+            console.log("lessons ",lessons);
+            console.log("course ",course);
+        })
     }
 
     ngAfterViewInit() {

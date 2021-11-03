@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import {fromEvent} from 'rxjs';
 import {concatMap, distinctUntilChanged, exhaustMap, filter, mergeMap} from 'rxjs/operators';
 import {fromPromise} from 'rxjs/internal-compatibility';
+import { Store } from '../common/store.service';
 
 @Component({
     selector: 'course-dialog',
@@ -24,7 +25,8 @@ export class CourseDialogComponent implements OnInit, AfterViewInit {
     constructor(
         private fb: FormBuilder,
         private dialogRef: MatDialogRef<CourseDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) course:Course ) {
+        @Inject(MAT_DIALOG_DATA) course:Course,
+        private store:Store ) {
 
         this.course = course;
 
@@ -62,11 +64,15 @@ export class CourseDialogComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         fromEvent(this.saveButton.nativeElement,'click')
+        // only last click on save button should be considered to make http request so exhaustMap is used 
         .pipe(
-            exhaustMap(() => this.form.value)
+            filter((value) => this.form.valid),
+            exhaustMap(() => this.store.saveCourse(this.course.id,this.form.value))
         )
-        .subscribe();
-
+        .subscribe(
+            ()=>this.close(),
+            (err)=> console.log("Error in saving ",err)
+        );
     }
 
 

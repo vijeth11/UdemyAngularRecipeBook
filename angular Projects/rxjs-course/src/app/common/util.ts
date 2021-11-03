@@ -20,7 +20,9 @@ export function createHttpObservable(url:string){
         observer.complete();
       })
       .catch(err => observer.error(err))
-
+      
+      // these are the cancellation functions. This function is called when 
+      // unsubscribe is called over this observable.(ex: AboutComponent)
       return () => controller.abort();
     })
     return http$;
