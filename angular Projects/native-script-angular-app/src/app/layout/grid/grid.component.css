@@ -1,0 +1,25 @@
+#l1{
+    background: red;
+}
+
+#l2{
+    background: blue;
+}
+
+#l3{
+    background: green;
+}
+
+#l4{
+    background: yellow;
+}
+
+#l5{
+    background: orange;
+}
+
+.stack{
+    border-color: green;
+    border-width: 5;
+    height: 500;
+}

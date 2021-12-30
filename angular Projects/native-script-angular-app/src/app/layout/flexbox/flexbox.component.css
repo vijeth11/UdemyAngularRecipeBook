@@ -1,0 +1,22 @@
+Label{
+    width:50;
+    height:50;
+}
+
+#l1{
+    background: red;
+}
+
+#l2{
+    background: blue;
+}
+
+#l3{
+    background: green;
+}
+
+FlexboxLayout{
+    height: 300;
+    border-width: 5;
+    border-color: green;
+}

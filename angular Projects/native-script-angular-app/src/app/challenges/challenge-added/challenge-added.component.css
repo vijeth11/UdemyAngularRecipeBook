@@ -1,0 +1,11 @@
+TextField{
+    width: 50%;
+}
+
+Button{
+    width: 50%;
+}
+
+FlexboxLayout{
+    margin-top: 30;
+}
