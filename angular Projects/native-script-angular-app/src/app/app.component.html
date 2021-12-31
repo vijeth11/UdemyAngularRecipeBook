@@ -1,7 +1,6 @@
-<FlexboxLayout flexDirection="column">
-    <ns-challenge-added (data)=" onChallengeChanged($event)"></ns-challenge-added>
-    <ns-current-challenge [currentChallenges]="enteredChallenge"></ns-current-challenge>
+<StackLayout>
+    <page-router-outlet></page-router-outlet>
     <!--<ns-stack></ns-stack>-->
     <!--<ns-flexbox></ns-flexbox>-->
     <!--<ns-grid></ns-grid>-->
-</FlexboxLayout>
+</StackLayout>
