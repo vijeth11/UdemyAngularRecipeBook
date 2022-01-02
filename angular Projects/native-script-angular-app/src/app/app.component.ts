@@ -1,4 +1,4 @@
-import { ViewChild } from '@angular/core';
+import { ViewChild, ViewContainerRef } from '@angular/core';
 import { OnDestroy } from '@angular/core';
 import { AfterViewInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit{
   private drawerSub:Subscription;
   private drawer:RadSideDrawer;
   
-  constructor(private uiService:UIService,private changeDetectorRef:ChangeDetectorRef){}
+  constructor(private uiService:UIService,private changeDetectorRef:ChangeDetectorRef, private vcRef:ViewContainerRef){}
 
   onChallengeChanged(data:string){
     this.enteredChallenge.push(data);
@@ -38,8 +38,14 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit{
     this.drawerSub.unsubscribe();
   }
 
+
   ngAfterViewInit(){
     this.drawer = this.radSideDrawer.sideDrawer;
     this.changeDetectorRef.detectChanges();
+    this.uiService.setRootVCRef(this.vcRef);
+  }
+
+  onLogout(){
+    this.uiService.toggleDrawer();
   }
 }

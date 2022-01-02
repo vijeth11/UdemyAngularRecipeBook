@@ -3,6 +3,6 @@
     *ngIf="canGoBack"
     (tap)="onGoBack()"
     android.systemIcon="ic_menu_back"></NavigationButton>
-    <NavigationButton icon="res://menu_black" (tap)="onToggleMenu()"></NavigationButton>
-
+    <NavigationButton *ngIf="hasMenu" icon="res://menu_black" (tap)="onToggleMenu()"></NavigationButton>
+    <ng-content></ng-content>
 </ActionBar>

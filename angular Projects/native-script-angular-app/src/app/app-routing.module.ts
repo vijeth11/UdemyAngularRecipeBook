@@ -9,13 +9,18 @@ import { NgModule } from '@angular/core';
 
 const routes: Routes = [
     {path:'',component: AuthComponent},   
-    {path:'challenges', component:ChallengeTabsComponent,
-    children:[
-        // outlet should be equal to value given in name attriburte of router-outlet tag
-        {path:'today', component: TodayComponent, outlet:'today'},
-        {path:'current-challenge',component: CurrentChallengeComponent, outlet:'currentChallenge'},
+    {path:'challenges', 
+     children:[
+        { path:'tabs',component:ChallengeTabsComponent,
+        children:[
+            // outlet should be equal to value given in name attriburte of router-outlet tag
+            {path:'today', component: TodayComponent, outlet:'today'},
+            {path:'current-challenge',component: CurrentChallengeComponent, outlet:'currentChallenge'},
+        ]},
+        {path:':mode', component: ChallengeAddedComponent},
+        {path:'', redirectTo: '/challenges/tabs', pathMatch:'full'}
     ]},
-    {path:'edit-challenge', component: ChallengeAddedComponent},
+    
 ]
 @NgModule({
     imports:[NativeScriptRouterModule.forRoot(routes)],

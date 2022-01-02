@@ -15,6 +15,7 @@ export class ActionBarComponent {
 
   @Input() title:string;
   @Input() showBackButton:boolean = true;
+  @Input() public hasMenu:boolean = true;
 
   get canGoBack():boolean{
     return this.router.canGoBack() && this.showBackButton;
