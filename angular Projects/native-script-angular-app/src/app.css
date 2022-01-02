@@ -39,3 +39,11 @@ The following CSS rule changes the font size of all Buttons that have the
   margin: 5 0;
   padding: 8 4;
 }
+
+.drawerContainer{
+  background: linear-gradient(140deg, #2b0c72, #5c3fa0);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20;
+}

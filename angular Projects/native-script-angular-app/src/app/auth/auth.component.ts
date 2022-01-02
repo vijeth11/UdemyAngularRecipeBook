@@ -13,6 +13,6 @@ export class AuthComponent{
    }
 
    onSignIn(){
-     this.router.navigate(['/today'], { clearHistory: true });     
+     this.router.navigate(['/challenges'], { clearHistory: true });     
    }
 }
