@@ -1,5 +1,6 @@
 <ns-action-bar title="Today's challenge" [showBackButton]="false"></ns-action-bar>
-<StackLayout>
-    <Label text="this is today page" style="font-size:30"></Label>
-    
-</StackLayout>
+<FlexboxLayout>
+    <Button class="btn btn-success -rounded-lg" text="COMPLETED"></Button>
+    <Button class="btn btn-failed -rounded-lg" text="FAILED"></Button>
+    <Button class="-simple" text="Reset"></Button>    
+</FlexboxLayout>

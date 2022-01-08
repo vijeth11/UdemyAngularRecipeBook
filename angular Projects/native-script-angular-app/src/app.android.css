@@ -1,0 +1,11 @@
+@import "./app.common.css";
+
+.btn{
+    background: #7c0157;
+    border-color: #7c0157;
+    color:white;
+}
+
+.-rounded-lg{
+    height: fit-content;
+}

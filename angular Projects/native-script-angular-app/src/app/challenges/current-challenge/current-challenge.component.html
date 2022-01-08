@@ -15,8 +15,29 @@
         <Label text="Edit"></Label>
     </ActionItem>
 </ns-action-bar>
-<StackLayout>
-    <Label text="Current Challenge page"></Label>
-    <Button text="Edit Challenge" (tap)="editChallenge()" class="btn btn-primary btn-active"></Button>
-    <Button text="Change Status" (tap)="onChangeStatus()" class="btn btn-primary btn-active"></Button>
-</StackLayout>
+<ScrollView>
+    <FlexboxLayout class="page">
+        <StackLayout>
+            <Label class="h1" text="Take a walk"></Label>
+            <Label class="body" text="Walk atleast 20 minutes"></Label>
+        </StackLayout>
+        <GridLayout rows="auto,*,*,*,*,*,*" columns="*,*,*,*,*,*,*">
+            <Label *ngFor="let weekDay of weekDays; let i = index" 
+            class="text-center weekday"
+            width="100%"
+            [text]="weekDay" 
+            row="0" 
+            [col]="i"></Label>
+
+            <FlexboxLayout class="day"
+            [row]="getRow(i,day)"
+            [col]="day.dayInWeek"
+            *ngFor="let day of days;let i = index">
+                <Label 
+                style="font-size:14"                 
+                [text]="day.dayInMonth">
+                </Label>
+            </FlexboxLayout>
+        </GridLayout>
+    </FlexboxLayout>
+</ScrollView>
