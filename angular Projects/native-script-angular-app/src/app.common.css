@@ -42,26 +42,47 @@ until unless you pass alternative css file path for bootstrap module in main.ts
   width:80%
 }
 
-.nt-input .nt-label{
+.nt-form .nt-input .nt-label{
   color:#7c015d;
   font-weight: bold;    
+  font-family: 'Oswald','Oswald-Bold','Oswald-Regular';
 }
 
-  .drawerContainer{
-    background: linear-gradient(140deg, #2b0c72, #5c3fa0);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+.btn{
+  width:80%;
+  background:#7c015d;
+  color:white;
+  border-radius: 50%;
+}
+
+.btn.logout{
+  font-size: 24;
+}
+
+.drawerContainer{
+  background: linear-gradient(140deg, #2b0c72, #5c3fa0);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
     padding: 20;
-  }
+}
 
-  .btn{ 
-    font-size: 18;
-    border-width:1;
-    width:100%;
-    margin: 5 0;
-  }
 
-  ActionBar{
-    background:#7c0157;
-  }
+ActionBar{
+  background:#7c0157;
+}
+
+/*
+ Android will search for the file name in this case (Font-Awesome) while
+ IOS will search for the name so FontAwesome class name in side the Font-Awsome file
+ pre-append the unicode with \u or &#x for the icon to show
+ refer https://docs.nativescript.org/ui-and-styling.html#using-icon-fonts-in-nativescript
+*/
+.fa{
+  font-family: 'FontAwesome', 'Font-Awesome-5';
+}
+
+.fas{
+  font-family: 'FontAwesome','Font-Awesome-5-Solid';
+}

@@ -1,38 +1,6 @@
-FlexboxLayout{
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-Button{
-    margin-bottom: 5%;
-}
-
-.btn{
-    width: 300;
-}
-
-.btn-success{
-    background: green;
-    border-color: green;
-    color:white;
-}
-
-.btn-failed{
-    background:red;
-    border-color: red;
-    color:white;
-}
-
-.-primary{
-    background:#7c015d;
-    color:white;
-}
-
-.-simple{
-    color: #7c015d;
-}
-
-.-rounded-lg{
-    height: fit-content;
+GridLayout{
+    background-image: url("res://todaypage");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }

@@ -1,3 +1,4 @@
+import { ChallengeActionsModule } from './challenges/challenge-actions/challenge-actions.module';
 import { SharedModule } from './shared/ui/shared.module';
 import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +20,8 @@ import { DayModalComponent } from './challenges/day-modal/day-modal.component';
     NativeScriptFormsModule, 
     AppRoutingModule,
     NativeScriptUISideDrawerModule,
-    SharedModule
+    SharedModule,
+    ChallengeActionsModule
   ],
   declarations: [
     AppComponent,

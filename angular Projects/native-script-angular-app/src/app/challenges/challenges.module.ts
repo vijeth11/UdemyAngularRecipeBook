@@ -1,3 +1,4 @@
+import { ChallengeActionsModule } from './challenge-actions/challenge-actions.module';
 import { SharedModule } from './../shared/ui/shared.module';
 import { CurrentChallengeComponent } from './current-challenge/current-challenge.component';
 import { ChallengeTabsComponent } from './challenge-tabs/challenge-tabs.component';
@@ -7,6 +8,7 @@ import { NgModule } from "@angular/core";
 import { NativeScriptFormsModule, NativeScriptCommonModule } from '@nativescript/angular';
 import { TodayComponent } from './today/today.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 
 @NgModule({
     declarations:[
@@ -19,7 +21,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
         ChallengesRoutingModule,
         NativeScriptCommonModule,
         NativeScriptFormsModule,
-        SharedModule
+        SharedModule,
+        ChallengeActionsModule
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })

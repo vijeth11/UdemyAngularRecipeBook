@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
 })
 export class TodayComponent{
  
-
+ onActionSelected(action:'completed'|'fail'|'cancel'){
+   console.log(action);
+ }
 }

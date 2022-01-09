@@ -22,6 +22,7 @@
     color: #2b0c72;
     font-weight: bold;
     font-size: 16;
+    margin: 15 0;
 }
 
 .day{
@@ -35,3 +36,22 @@
     border-width: 1;
     color:#7c015d;
 }
+
+.completed{
+    background: green;
+    color:white;
+}
+
+.failed{
+    background: red;
+    color:white;
+}
+
+.not-settable{
+    background: #ccc;
+    color:#535353;
+}
+
+.fa{
+    font-family: 'FontAwesome', 'Font-Awesome-5';
+  }
