@@ -39,7 +39,17 @@ until unless you pass alternative css file path for bootstrap module in main.ts
 }
 
 .nt-input{
-  width:80%
+  width:80%;
+  border-bottom-color: #7c015d;
+}
+
+.ng-form .nt-label.invalid{
+  color:red;
+}
+
+.ng-form .nt-input.ng-invalid.ng-touched{
+  border-bottom-color: red;
+  color: red;
 }
 
 .nt-form .nt-input .nt-label{
@@ -47,7 +57,6 @@ until unless you pass alternative css file path for bootstrap module in main.ts
   font-weight: bold;    
   font-family: 'Oswald','Oswald-Bold','Oswald-Regular';
 }
-
 
 .btn{
   width:80%;
@@ -73,6 +82,10 @@ ActionBar{
   background:#7c0157;
 }
 
+.ng-invalid.ng-touched {
+  border-bottom-color: red;
+  color:red;
+}
 /*
  Android will search for the file name in this case (Font-Awesome) while
  IOS will search for the name so FontAwesome class name in side the Font-Awsome file

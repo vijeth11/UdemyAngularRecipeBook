@@ -1,6 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { PageRoute } from '@nativescript/angular';
+import { PageRoute, RouterExtensions } from '@nativescript/angular';
 
 @Component({
     selector:'ns-challenge-added',
@@ -10,7 +10,7 @@ import { PageRoute } from '@nativescript/angular';
 export class ChallengeAddedComponent implements OnInit{
 
     public isCreating:boolean = true;
-    constructor(private activated:ActivatedRoute,private pageRoute:PageRoute){
+    constructor(private activated:ActivatedRoute,private pageRoute:PageRoute, private router: RouterExtensions){
 
     }
 
@@ -27,5 +27,10 @@ export class ChallengeAddedComponent implements OnInit{
                 }
             });
         });
+    }
+
+    onSubmit(title:string, description:string){
+       console.log("title "+title+" desc "+description); 
+       this.router.backToPreviousPage();
     }
 }

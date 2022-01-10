@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { UIService } from './shared/ui/ui.service';
 import { DayModalComponent } from './challenges/day-modal/day-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -20,6 +21,7 @@ import { DayModalComponent } from './challenges/day-modal/day-modal.component';
     NativeScriptFormsModule, 
     AppRoutingModule,
     NativeScriptUISideDrawerModule,
+    ReactiveFormsModule,
     SharedModule,
     ChallengeActionsModule
   ],
