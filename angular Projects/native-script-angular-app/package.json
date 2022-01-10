@@ -3,6 +3,9 @@
   "main": "./src/main.ts",
   "version": "1.0.0",
   "private": true,
+  "nativescript":{
+    "id":"com.vijeth.monthlychallenge"
+  },
   "dependencies": {
     "@angular/animations": "~13.1.1",
     "@angular/common": "~13.1.1",

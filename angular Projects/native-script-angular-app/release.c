@@ -1,0 +1,1 @@
+tns build android --release --key-store-path nativescript-angular.keystore --key-store-password 1234567890 --key-store-alias nativescript-angular --key-store-alias-password 1234567890
