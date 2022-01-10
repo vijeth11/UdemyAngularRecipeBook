@@ -33,7 +33,7 @@
         ></TextField>
         <Label *ngIf = "!passwordControlIsValid" text="Password is required"></Label>
     </StackLayout>
-    <Button class="-simple" [text]="isLogin ? 'Sign Up' " 'Login' " (tap)="onSwitch()"></Button>
+    <Button class="-simple" [text]="isLogin ? 'Sign Up' : 'Login' " (tap)="onSwitch()"></Button>
     <Button 
     [text]="isLogin ? 'Login': 'Sign Up' "
     class="btn btn-primary btn-rounded-lg" 
