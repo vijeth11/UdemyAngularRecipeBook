@@ -2,11 +2,21 @@
     <Button 
     class="btn btn-success -rounded-lg" 
     text="COMPLETED" 
-    (tap)="onAction('complete')"></Button>
+    (tap)="onAction('complete')"
+    *ngIf= "action !== 'complete'"
+    [isEnabled]="!done"></Button>
+    <StackLayout height="60" class="btn btn-success -rounded-lg" *ngIf= "action === 'complete'">
+        <Label text="&#xf00c;" horizontalAlignment="center" class="fa fas btn-alt animate-button"></Label>
+    </StackLayout>
     <Button 
     class="btn btn-failed -rounded-lg" 
     text="FAILED" 
-    (tap)="onAction('fail')"></Button>
+    (tap)="onAction('fail')"
+    *ngIf= "action !== 'fail'"
+    [isEnabled]="!done"></Button>
+    <StackLayout *ngIf= "action === 'fail'"height="60" class="btn btn-failed -rounded-lg">
+        <Label text="&#xf00d;" horizontalAlignment="center" class="fa fas btn-alt animate-button"></Label>
+    </StackLayout>
     <Button 
     class="-simple" 
     [text]="cancelText" 

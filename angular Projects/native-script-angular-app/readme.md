@@ -45,3 +45,23 @@ The `e2e` apps are meant for testing stuff. You can take a look at these additio
 ## Command to create webconfig file
 
 npx @nativescript/webpack init
+
+
+## Release procedure
+
+- Update Gradle in AppResource with below definition changes as google upgrades
+defaultConfig {
+    buildToolsVersion "28.0.3"
+    compileSdkVersion 30
+    generatedDensities = []
+    multiDexEnabled true
+    minSdkVersion 28
+    targetSdkVersion 30
+  }
+
+  - add below attribute in package.json the id will be the applications unique Id used by google to deploy the app (remember to remove when developing)
+  "nativescript": {
+    "id": "com.vijeth.monthlychallenge"
+  }
+
+  - follow instructions in [native-script release](https://v7.docs.nativescript.org/angular/tooling/publishing/publishing-android-apps)

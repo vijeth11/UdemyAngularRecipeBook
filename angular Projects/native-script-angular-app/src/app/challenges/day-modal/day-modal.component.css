@@ -5,3 +5,7 @@ FlexboxLayout{
     margin: 20;
     background:white;
 }
+
+.h1{
+    color:#7c015d !important;
+}

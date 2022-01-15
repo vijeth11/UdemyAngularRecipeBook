@@ -6,7 +6,7 @@
         class="input" 
         returnKeyType="next" 
         required 
-        ngModel
+        [(ngModel)]="title"
         #titleCtrl="ngModel"></TextField>
         <Label 
         *ngIf="!titleCtrl.valid && titleCtrl.touched" 
@@ -20,7 +20,7 @@
         class="input" 
         returnKeyType="done" 
         required
-        ngModel
+        [(ngModel)]="description"
         #descCtrl="ngModel"
         ></TextView>
         <Label

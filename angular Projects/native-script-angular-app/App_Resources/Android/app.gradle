@@ -10,9 +10,17 @@
 // create a file named before-plugins.gradle in the current directory and place it there
 
 android {
-  defaultConfig {
+  /*defaultConfig {
     minSdkVersion 17
     generatedDensities = []
+  }*/
+  defaultConfig {
+    buildToolsVersion "28.0.3"
+    compileSdkVersion 30
+    generatedDensities = []
+    multiDexEnabled true
+    minSdkVersion 28
+    targetSdkVersion 30
   }
   aaptOptions {
     additionalParameters "--no-version-vectors"

@@ -1,6 +1,13 @@
-GridLayout{
+.page{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-image: url("res://todaypage");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+.h1{
+    color:#7c015d !important;
 }

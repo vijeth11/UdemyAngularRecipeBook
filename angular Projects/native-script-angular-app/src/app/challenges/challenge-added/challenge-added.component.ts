@@ -1,6 +1,9 @@
+import { Challenge } from './../challenge.model';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PageRoute, RouterExtensions } from '@nativescript/angular';
+import { ChallengeService } from '../challenge.service';
+import { take } from 'rxjs';
 
 @Component({
     selector:'ns-challenge-added',
@@ -10,7 +13,13 @@ import { PageRoute, RouterExtensions } from '@nativescript/angular';
 export class ChallengeAddedComponent implements OnInit{
 
     public isCreating:boolean = true;
-    constructor(private activated:ActivatedRoute,private pageRoute:PageRoute, private router: RouterExtensions){
+    public title = '';
+    public description = '';
+    
+    constructor(
+        private pageRoute:PageRoute, 
+        private router: RouterExtensions,
+        private challengeService:ChallengeService){
 
     }
 
@@ -25,12 +34,24 @@ export class ChallengeAddedComponent implements OnInit{
                 }else{
                     this.isCreating = paramMap.get('mode') != 'edit';
                 }
+                if(!this.isCreating){
+                    this.challengeService.currentChallenge.pipe(take(1)).subscribe( (challenge:Challenge) => {
+                        this.title = challenge.title;
+                        this.description = challenge.description;
+                    })
+                }
             });
         });
     }
 
     onSubmit(title:string, description:string){
-       console.log("title "+title+" desc "+description); 
+       console.log("title "+title+" desc "+description);
+       if(this.isCreating)
+       { 
+            this.challengeService.createNewChallenge(title,description);
+       }else{
+           this.challengeService.updateChallenge(this.title,this.description);
+       }
        this.router.backToPreviousPage();
     }
 }

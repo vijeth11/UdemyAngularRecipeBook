@@ -11,17 +11,21 @@
     <ActionItem android.position="actionBar" nsRouterLink="/challenges/replace" pageTransition="slideLeft">
         <Label text="&#xf0fe;" class="fa p-10" fontSize="24"></Label>
     </ActionItem>
-    <ActionItem android.position="actionBar" nsRouterLink="/challenges/edit" pageTransition="slideLeft">
+    <ActionItem *ngIf="currentChallenge" android.position="actionBar" nsRouterLink="/challenges/edit" pageTransition="slideLeft">
         <Label text="&#xf044;" class="fa p-10" fontSize="24"></Label>
     </ActionItem>
 </ns-action-bar>
 <ScrollView>
     <FlexboxLayout class="page">
-        <StackLayout>
-            <Label class="h1" text="Take a walk"></Label>
-            <Label class="body" text="Walk atleast 20 minutes"></Label>
+        <StackLayout *ngIf="!currentChallenge">
+            <Label text="No challenge found!"></Label>
+            <Button class="btn -primary" text="Create One!" nsRouterLink="/challenges/replace"></Button>
         </StackLayout>
-        <GridLayout rows="auto,*,*,*,*,*,*" columns="*,*,*,*,*,*,*">
+        <StackLayout *ngIf="currentChallenge">
+            <Label class="h1" [text]="currentChallenge.title"></Label>
+            <Label class="body" [text]="currentChallenge.description"></Label>
+        </StackLayout>
+        <GridLayout *ngIf="currentChallenge" rows="auto,*,*,*,*,*,*" columns="*,*,*,*,*,*,*">
             <Label *ngFor="let weekDay of weekDays; let i = index" 
             class="text-center weekday"
             width="100%"
@@ -30,11 +34,12 @@
             [col]="i"></Label>
 
             <FlexboxLayout 
-            class="day completed"
+            class="day"
+            [ngClass]="{'not-settable': !getIsSettable(day.dayInMonth), 'completed': day.status === 1, 'failed': day.status === 2}"
             [row]="getRow(i,day)"
             [col]="day.dayInWeek"
-            *ngFor="let day of days;let i = index"
-            (tap)="onChangeStatus()">
+            *ngFor="let day of currentChallenge.days;let i = index"
+            (tap)="onChangeStatus(day)">
                 <Label 
                 style="font-size:14"                 
                 [text]="day.dayInMonth">
