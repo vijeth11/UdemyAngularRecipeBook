@@ -34,6 +34,8 @@ The `e2e` apps are meant for testing stuff. You can take a look at these additio
     ns doctor
     ns build android --bundle
     ns run android
+    ns resources generate icons src\app-icon.png
+    ns resources generate splashes src\app-icon.png
     ```
 ## Values to be added in current user environment variable in windows
     - ANDROID_HOME={ C drive path}/Android/sdk

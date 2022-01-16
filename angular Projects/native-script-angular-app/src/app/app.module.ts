@@ -7,7 +7,7 @@ import { FlexboxComponent } from './layout/flexbox/flexbox.component';
 import { StackComponent } from './layout/stack/stack.component';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
-import { NativeScriptFormsModule, NativeScriptModule } from '@nativescript/angular';
+import { NativeScriptFormsModule, NativeScriptHttpClientModule, NativeScriptModule } from '@nativescript/angular';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { UIService } from './shared/ui/ui.service';
@@ -23,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NativeScriptUISideDrawerModule,
     ReactiveFormsModule,
     SharedModule,
-    ChallengeActionsModule
+    ChallengeActionsModule,
+    NativeScriptHttpClientModule
   ],
   declarations: [
     AppComponent,

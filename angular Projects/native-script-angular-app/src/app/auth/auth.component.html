@@ -35,8 +35,10 @@
     </StackLayout>
     <Button class="-simple" [text]="isLogin ? 'Sign Up' : 'Login' " (tap)="onSwitch()"></Button>
     <Button 
+    *ngIf="!isLoading"
     [text]="isLogin ? 'Login': 'Sign Up'"
     class="btn btn-primary btn-rounded-lg" 
     (tap)="onSignIn()"
     [isEnabled]="form.valid"></Button>
+    <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
 </StackLayout>
