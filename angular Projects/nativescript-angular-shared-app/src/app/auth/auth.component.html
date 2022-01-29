@@ -1,0 +1,15 @@
+<form [formGroup]="form" class="form" (ngSubmit)="onSignIn()">
+    <div class="form-control input-field">
+        <label for="email" class="label">E-mail</label>
+        <input class = "input" type="email" id="email" formControlName="email" #emailEl/>
+    </div>
+    <div class="form-control input-field">
+        <label for="password" class="label">Password</label>
+        <input class = "input" type="password" id="password" formControlName="password" #passwordEl/>
+    </div>
+    <div class="input-field text-center">
+        <button type="button" class="btn-flat" (click)="onSwitch()">{{ isLogin ? 'signUp' : 'login'}}</button>
+    </div>    
+    <button class = "btn btn-primary" type="submit" *ngIf="!isLoading">{{ isLogin ? 'login' : 'signUp'}}</button>
+    <ns-loading-indicator *ngIf="isLoading"></ns-loading-indicator>
+</form>

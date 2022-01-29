@@ -1,0 +1,59 @@
+.action-bar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 78px;
+    background: #7c015d;
+    box-sizing: border-box;
+}
+
+.action-bar > nav{
+    padding: 0 1rem;
+    height: 100%;
+}
+
+.title{
+    color:white;
+    margin: 0;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 20px;
+}
+
+.action-bar > nav > ul{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-bar > nav > ul >li{
+    flex-shrink: 0;
+    margin: 0 1rem;
+}
+
+.action-bar > nav > ul > li > a,.action-bar > nav > ul > li > button{
+    text-decoration: none;
+    color: white;
+    padding: 4px 8px;
+    border-radius:5px;
+    font: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+.action-bar > nav > ul > li > button:hover,
+.action-bar > nav > ul > li > button:active,
+.action-bar > nav > ul > li > a:hover,
+.action-bar > nav > ul > li > a:active,
+.action-bar > nav > ul > li > a.active{
+    color:#7c015d;
+    background: white;
+}
+

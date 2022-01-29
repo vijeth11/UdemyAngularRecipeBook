@@ -1,0 +1,22 @@
+<div class="container">
+    <button
+    class="btn btn-success"     
+    (click)="onAction('complete')"
+    *ngIf= "action !== 'complete'"
+    [disabled]="done">COMPLETED</button>
+    <div class="btn btn-success" *ngIf= "action === 'complete'">
+        <i  class="fas fa-check text-center fas btn-alt animate-button">
+        </i>
+    </div>
+    <button 
+    class="btn btn-failed" 
+    (click)="onAction('fail')"
+    *ngIf= "action !== 'fail'"
+    [disabled]="!done">FAILED</button>
+    <div *ngIf= "action === 'fail'" class="btn btn-failed">
+        <i class="fas fa-times text-center btn-alt animate-button"></i>
+    </div>
+    <Button 
+    class="-simple"    
+    (click)="onAction('cancel')">{{cancelText}}</Button>    
+</div>

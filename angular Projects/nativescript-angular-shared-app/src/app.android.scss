@@ -1,0 +1,76 @@
+// Import common styles
+@import 'app-common';
+@import "~@nativescript/theme/core";
+@import "~@nativescript/theme/blue";
+// Place any CSS rules you want to apply only on Android here
+
+@import '~@nativescript/theme/css/core.css';
+@import '~@nativescript/theme/css/default.css';
+
+.nt-form{
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;    
+}  
+
+.nt-input{
+  width:80%;
+  border-bottom-color: #7c015d;
+}
+
+.ng-form .nt-label.invalid{
+  color:red;
+}
+
+.ng-form .nt-input.ng-invalid.ng-touched{
+  border-bottom-color: red;
+  color: red;
+}
+
+.nt-form .nt-input .nt-label{
+  color:#7c015d;
+  font-weight: bold;    
+  font-family: 'Oswald','Oswald-Bold','Oswald-Regular';
+}
+
+.btn{
+  width:80%;
+  background:#7c015d;
+  color:white;
+  border-radius: 50%;
+}
+
+.btn.logout{
+  font-size: 24;
+}
+
+.drawerContainer{
+  background: linear-gradient(140deg, #2b0c72, #5c3fa0);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    padding: 20;
+}
+
+
+ActionBar{
+  background:#7c0157;
+}
+
+.ng-invalid.ng-touched {
+  border-bottom-color: red;
+  color:red;
+}
+/*
+ Android will search for the file name in this case (Font-Awesome) while
+ IOS will search for the name so FontAwesome class name in side the Font-Awsome file
+ pre-append the unicode with \u or &#x for the icon to show
+ refer https://docs.nativescript.org/ui-and-styling.html#using-icon-fonts-in-nativescript
+*/
+.fa{
+  font-family: 'FontAwesome', 'Font-Awesome-5';
+}
+
+.fas{
+  font-family: 'FontAwesome','Font-Awesome-5-Solid';
+}

@@ -1,0 +1,44 @@
+<ns-action-bar [title]="isLogin ? 'Login' : 'SignUp' " [hasMenu]="false" [showBackButton]="false"></ns-action-bar>
+<StackLayout class="form" [formGroup]="form" >
+    <StackLayout>
+        <Label
+         class="nt-label"
+         text="UserName"
+        >        
+        </Label>
+        <TextField
+        class="nt-input"
+        returnKeyType="next"
+        keyboardType="email"
+        [autoCorrect]="false"
+        autocapitalizationType="none"
+        formControlName="email"
+        #emailEl
+        ></TextField>
+        <Label *ngIf = "!emailControlIsValid" text="Enter valid UserName"></Label>
+        <Label
+        class="nt-label"
+        text="Password">
+        </Label> 
+        <TextField
+        class="nt-input"
+        returnKeyType="done"
+        [autoCorrect]="false"
+        [secure]="true"
+        autocapitalizationType="none"
+        hint="Min 6 characters"
+        formControlName="password"
+        (returnPress)="onDone()"
+        #passwordEl
+        ></TextField>
+        <Label *ngIf = "!passwordControlIsValid" text="Password is required"></Label>
+    </StackLayout>
+    <Button class="-simple" [text]="isLogin ? 'Sign Up' : 'Login' " (tap)="onSwitch()"></Button>
+    <Button 
+    *ngIf="!isLoading"
+    [text]="isLogin ? 'Login': 'Sign Up'"
+    class="btn btn-primary btn-rounded-lg" 
+    (tap)="onSignIn()"
+    [isEnabled]="form.valid"></Button>
+    <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+</StackLayout>

@@ -1,0 +1,71 @@
+.container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+Button{
+    margin-bottom: 3%;
+}
+
+.btn{
+    width: 300ox;
+    height: 60px;
+}
+
+.btn-success{
+    background: green;
+    border-color: green;
+    color:white;
+}
+
+.btn-failed{
+    background:red;
+    border-color: red;
+    color:white;
+}
+
+.btn-success:disabled,
+.btn-failed:disabled{
+    background: #ccc;
+    color: #000 !important;
+    border-color: #ccc;
+}
+
+.-primary{
+    background:#7c015d;
+    color:white;
+}
+
+.-simple{
+    background: transparent;
+    color: #7c015d;
+}
+
+.-rounded-lg{
+    height: 50px;
+}
+
+.btn-alt{    
+    font-size: 30px;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animate-button{
+    animation-name: slide-up;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide-up{
+    from {
+        transform: translateY(30px);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
