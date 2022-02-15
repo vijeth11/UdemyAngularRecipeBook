@@ -1,0 +1,37 @@
+<ns-action-bar [title]="isCreating ? 'Replace Challenge':'Edit challenge'" [hasMenu]="false"></ns-action-bar>
+<FlexboxLayout class ="nt-form">
+    <StackLayout class="nt-input">
+        <Label class="nt-label"  text ="Title" [ngClass]="{invalid: !titleCtrl.valid && titleCtrl.touched}"></Label>
+        <TextField 
+        class="input" 
+        returnKeyType="next" 
+        required 
+        [(ngModel)]="title"
+        #titleCtrl="ngModel"></TextField>
+        <Label 
+        *ngIf="!titleCtrl.valid && titleCtrl.touched" 
+        text="Enter a valid value" 
+        style="color:red">
+        </Label>
+    </StackLayout>
+    <StackLayout class="nt-input">
+        <Label class="nt-label"  text ="Description" [ngClass]="{invalid: !descCtrl.valid && descCtrl.touched}"></Label>
+        <TextView 
+        class="input" 
+        returnKeyType="done" 
+        required
+        [(ngModel)]="description"
+        #descCtrl="ngModel"
+        ></TextView>
+        <Label
+        *ngIf="!descCtrl.valid && descCtrl.touched"  
+        text="Enter a valid description"
+        style="color:red">
+        </Label>
+    </StackLayout>
+    <Button 
+    class="-primary" 
+    text="Save" 
+    [isEnabled]="titleCtrl.valid && descCtrl.valid" 
+    (tap)="onSubmit(titleCtrl.value, descCtrl.value)"></Button>
+</FlexboxLayout>

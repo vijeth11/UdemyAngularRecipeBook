@@ -1,0 +1,12 @@
+<header class="action-bar">
+    <h1 class="title"> Monthly Challenge </h1>
+    <nav>
+        <ul>
+            <li><a routerLink="/challenges/today">Today</a></li>
+            <li><a routerLink="/challenges/current-challenge">Current Challenge</a></li>
+            <li><a routerLink="/challenges/replace">Replace</a></li>
+            <li *ngIf="hasChallenge"><a routerLink="/challenges/edit">Edit</a></li>
+            <li><button (click)="onLogout()">LogOut</button></li>
+        </ul>
+    </nav>
+</header>

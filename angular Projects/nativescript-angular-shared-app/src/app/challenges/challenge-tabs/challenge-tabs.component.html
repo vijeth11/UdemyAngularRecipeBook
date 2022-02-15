@@ -1,0 +1,10 @@
+<TabView *ngIf="!isLoading" androidTabsPosition="bottom" androidSelectedTabHighlightColor="#7c015d" selectedTabTextColor="#7c015d">
+    <page-router-outlet *tabItem="{title:'Today', iconSource:'res://checksolid'}" name="today">
+    </page-router-outlet>    
+    <page-router-outlet *tabItem="{title:'Current Challenge', iconSource:'res://trophy'}" name="currentChallenge">        
+    </page-router-outlet>
+</TabView>
+
+<FlexboxLayout justifyContent="center" alignItems="center" *ngIf="isLoading">
+    <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+</FlexboxLayout>
