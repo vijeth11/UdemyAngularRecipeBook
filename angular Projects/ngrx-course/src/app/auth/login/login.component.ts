@@ -1,3 +1,5 @@
+import { login } from './../auth.action';
+import { AppState } from './../../reducers/index';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
@@ -20,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
       private fb:FormBuilder,
       private auth: AuthService,
-      private router:Router) {
+      private router:Router,
+      private store:Store<AppState>) {
 
       this.form = fb.group({
           email: ['test@angular-university.io', [Validators.required]],
@@ -34,7 +37,25 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    const val = this.form.value;
+    this.auth.login(val.email,val.password)
+    .pipe(
+      tap(user => {
+        console.log(user);
+        /*
+        In Typescript if property name of an object and the value variable name which is assigned to the
+        property of the object literal is same then we do not need to ducplicate the name ex: In below case
+        for login method it requires payload object like { user:User } so instead of writing it like 
+        { user: user }
+        we can write it as below and Typescript will understand it
+        { user}
 
+        */
+        this.store.dispatch(login({user})); // login is an action function returned by createAction
+        this.router.navigateByUrl('/courses')
+      })
+    )
+    .subscribe(noop, () => alert("login failed"))
   }
 
 }
