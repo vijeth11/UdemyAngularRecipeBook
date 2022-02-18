@@ -22,6 +22,9 @@ export const coursesReducer = createReducer(
         // the entity adapter
         let newState = {...state, allCoursesLoaded:true};
         return adapter.addAll(action.courses,newState);        
+    }),
+    on(CourseAction.courseUpdated, (state:CourseState, action) => {
+        return adapter.updateOne(action.update,state);
     })
 );
 
