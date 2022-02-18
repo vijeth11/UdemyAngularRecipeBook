@@ -1,3 +1,4 @@
+import { select, Store } from '@ngrx/store';
 import {Component, OnInit} from '@angular/core';
 import {compareCourses, Course} from '../model/course';
 import {Observable} from "rxjs";
@@ -6,6 +7,8 @@ import {EditCourseDialogComponent} from '../edit-course-dialog/edit-course-dialo
 import { MatDialog } from '@angular/material/dialog';
 import {map, shareReplay} from 'rxjs/operators';
 import {CoursesHttpService} from '../services/courses-http.service';
+import { CourseState } from '../reducers/course.reducer';
+import { selectAdvancedCourse, selectBeginnersCourse, selectPromoTotal } from '../course.selector';
 
 
 
@@ -18,8 +21,6 @@ export class HomeComponent implements OnInit {
 
     promoTotal$: Observable<number>;
 
-    loading$: Observable<boolean>;
-
     beginnerCourses$: Observable<Course[]>;
 
     advancedCourses$: Observable<Course[]>;
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
 
     constructor(
       private dialog: MatDialog,
-      private coursesHttpService: CoursesHttpService) {
+      private store: Store<CourseState>) {
 
     }
 
@@ -35,32 +36,10 @@ export class HomeComponent implements OnInit {
       this.reload();
     }
 
-  reload() {
-
-    const courses$ = this.coursesHttpService.findAllCourses()
-      .pipe(
-        map(courses => courses.sort(compareCourses)),
-        shareReplay()
-      );
-
-    this.loading$ = courses$.pipe(map(courses => !!courses));
-
-    this.beginnerCourses$ = courses$
-      .pipe(
-        map(courses => courses.filter(course => course.category == 'BEGINNER'))
-      );
-
-
-    this.advancedCourses$ = courses$
-      .pipe(
-        map(courses => courses.filter(course => course.category == 'ADVANCED'))
-      );
-
-    this.promoTotal$ = courses$
-        .pipe(
-            map(courses => courses.filter(course => course.promo).length)
-        );
-
+  reload() {   
+      this.beginnerCourses$ = this.store.pipe(select(selectBeginnersCourse));
+      this.advancedCourses$ = this.store.pipe(select(selectAdvancedCourse));
+      this.promoTotal$ = this.store.pipe(select(selectPromoTotal));
   }
 
   onAddCourse() {
