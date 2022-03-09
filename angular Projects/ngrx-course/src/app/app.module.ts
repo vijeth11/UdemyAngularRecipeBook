@@ -63,7 +63,7 @@ const routes: Routes = [
       }
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([]),    
     StoreRouterConnectingModule.forRoot({
       stateKey:'router',  // to sync the Ui with store time-travelling debug we need to add a 
       routerState: RouterState.Minimal  // new attribute in state which stores routes state so debugger can use it and
