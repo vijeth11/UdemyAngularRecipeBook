@@ -1,3 +1,4 @@
+import { LessonEntityService } from './services/lesson-entity.service';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HomeComponent} from './home/home.component';
@@ -25,20 +26,48 @@ import { EntityDataService, EntityDefinitionService, EntityMetadataMap} from '@n
 import {compareCourses, Course} from './model/course';
 
 import {compareLessons, Lesson} from './model/lesson';
+import { CourseEntityService } from './services/course-entity.service';
+import { CoursesResolver } from './services/courses.resolver';
+import { CourseDataService } from './services/courses-data.service';
 
 
 export const coursesRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent
-
+    component: HomeComponent,
+    resolve:{
+      courses: CoursesResolver
+    }
   },
   {
     path: ':courseUrl',
-    component: CourseComponent
+    component: CourseComponent,
+    resolve:{
+      courses: CoursesResolver
+    }
   }
 ];
 
+//this is used to create an data map for the Entity which needs to be later registered 
+// to provide developers with the CRUD operations It takes some attributes like  SelectId, SortComparer, etc
+// which can be provided like we pass in createEntityAdapter
+const entityMetadata: EntityMetadataMap = {
+  Course:{
+    sortComparer: compareCourses,
+    // this is made to make update request call to server happen in bacground and in UI the 
+    // changes made in edit page should reflect immediately so it will immediately update the STATE
+    // By default below option will be false and state will be updated only after successfull backend 
+    // call due to which there will be delay in the UI reflecting the changes.
+    // There are options for Insert,Delete(default:true),Upsert and SaveAllEntities
+    entityDispatcherOptions: {
+      optimisticUpdate:true,
+
+    }
+  },
+  Lesson:{
+    sortComparer: compareLessons
+  }
+};
 @NgModule({
   imports: [
     CommonModule,
@@ -73,13 +102,20 @@ export const coursesRoutes: Routes = [
   ],
   entryComponents: [EditCourseDialogComponent],
   providers: [
-    CoursesHttpService
+    CoursesHttpService,
+    CourseEntityService,
+    LessonEntityService,
+    CoursesResolver,
+    CourseDataService
   ]
 })
 export class CoursesModule {
 
-  constructor() {
-
+  constructor(private eds:EntityDefinitionService, 
+    private entityDataService: EntityDataService, 
+    private courseDataService:CourseDataService) {
+    this.eds.registerMetadataMap(entityMetadata);
+    this.entityDataService.registerService('Course',courseDataService);
   }
 
 

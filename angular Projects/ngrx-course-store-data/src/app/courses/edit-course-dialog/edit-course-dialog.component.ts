@@ -1,9 +1,9 @@
+import { CourseEntityService } from './../services/course-entity.service';
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Course} from '../model/course';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {CoursesHttpService} from '../services/courses-http.service';
 
 @Component({
   selector: 'course-dialog',
@@ -26,7 +26,7 @@ export class EditCourseDialogComponent {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditCourseDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data,
-    private coursesService: CoursesHttpService) {
+    private courseEntityService:CourseEntityService) {
 
     this.dialogTitle = data.dialogTitle;
     this.course = data.course;
@@ -63,12 +63,23 @@ export class EditCourseDialogComponent {
       ...this.form.value
     };
 
-    this.coursesService.saveCourse(course.id, course)
-      .subscribe(
-        () => this.dialogRef.close()
-      )
-
-
+    if(this.mode == 'update'){
+      // this uses conventional url built by itself based on generic structure i.e '/api/course/:id'
+      // If we need to use customised url we need to update courses-data.service in this ex or any other service 
+      // which is registered with the entityDataService or custom urlGenerator
+      this.courseEntityService.update(course);
+      this.dialogRef.close();
+    }
+    else if(this.mode == 'create'){
+      // no need to subscribe in general until you need to do some operation after the api call
+      // in below example we are doing the closing of dialog after the successfull insert of new course
+      // but we dont need to subscribe in general
+      this.courseEntityService.add(course)
+      .subscribe( newCourse => {
+          console.log("New Course", newCourse);
+          this.dialogRef.close();
+      });      
+    }
   }
 
 

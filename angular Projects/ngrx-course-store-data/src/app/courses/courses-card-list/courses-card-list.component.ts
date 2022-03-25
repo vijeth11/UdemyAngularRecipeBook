@@ -1,3 +1,4 @@
+import { CourseEntityService } from './../services/course-entity.service';
 import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {Course} from "../model/course";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
@@ -18,7 +19,8 @@ export class CoursesCardListComponent implements OnInit {
     courseChanged = new EventEmitter();
 
     constructor(
-      private dialog: MatDialog ) {
+      private dialog: MatDialog,
+      private courseEntityService:CourseEntityService ) {
     }
 
     ngOnInit() {
@@ -42,8 +44,9 @@ export class CoursesCardListComponent implements OnInit {
     }
 
   onDeleteCourse(course:Course) {
-
-
+    // no need to subscribe in general until you need to do some operation after the api call
+    // see the example in edit-component for creating of course
+      this.courseEntityService.delete(course);
   }
 
 }
